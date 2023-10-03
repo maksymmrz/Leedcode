@@ -1,4 +1,4 @@
-package arrays;
+package main.java.person.maksym.preparation.arrays;
 
 public class MedianTwoSortedArrays {
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
