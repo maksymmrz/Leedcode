@@ -1,4 +1,4 @@
-package main.java.person.maksym.preparation.lists;
+package maksym.preparation.lists;
 
 public class AddTwoNumbers {
 

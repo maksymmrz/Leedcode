@@ -1,6 +1,4 @@
-package main.java.person.maksym.preparation;
-
-import java.util.*;
+package maksym.preparation;
 
 public class MergeKSortedLists {
     public static class ListNode {

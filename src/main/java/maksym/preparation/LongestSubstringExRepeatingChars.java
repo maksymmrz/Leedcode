@@ -1,4 +1,4 @@
-package main.java.person.maksym.preparation;
+package maksym.preparation;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package main.java.person.maksym.preparation.arrays;
+package maksym.preparation.arrays;
 
 public class ContainerWithMostWater {
 

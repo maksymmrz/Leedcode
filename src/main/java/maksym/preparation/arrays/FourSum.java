@@ -1,4 +1,4 @@
-package main.java.person.maksym.preparation.arrays;
+package maksym.preparation.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;

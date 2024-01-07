@@ -1,4 +1,4 @@
-package main.java.person.maksym.preparation;
+package maksym.preparation;
 
 public class ReverseInteger {
 

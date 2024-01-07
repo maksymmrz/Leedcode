@@ -1,6 +1,4 @@
-package main.java.person.maksym.preparation;
-
-import java.util.List;
+package maksym.preparation;
 
 public class SwapNodesInPairs {
 
