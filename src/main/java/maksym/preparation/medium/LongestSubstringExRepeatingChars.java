@@ -1,4 +1,4 @@
-package maksym.preparation;
+package maksym.preparation.medium;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,7 +6,7 @@ import java.util.Set;
 public class LongestSubstringExRepeatingChars {
 
     public int lengthOfLongestSubstring(String s) {
-        if (s.length() == 0) {
+        if (s.isEmpty()) {
             return 0;
         } else {
             int max = 1;

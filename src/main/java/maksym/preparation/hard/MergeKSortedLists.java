@@ -1,12 +1,9 @@
-package maksym.preparation;
+package maksym.preparation.hard;
 
 public class MergeKSortedLists {
     public static class ListNode {
         int val;
         ListNode next;
-
-        ListNode() {
-        }
 
         ListNode(int val) {
             this.val = val;

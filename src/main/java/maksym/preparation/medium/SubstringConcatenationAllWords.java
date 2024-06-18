@@ -1,4 +1,4 @@
-package maksym.preparation;
+package maksym.preparation.medium;
 
 import java.util.*;
 

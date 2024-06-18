@@ -1,4 +1,4 @@
-package maksym.preparation;
+package maksym.preparation.hard;
 
 public class RegularExpressionMatching {
 

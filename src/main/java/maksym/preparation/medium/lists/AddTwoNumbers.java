@@ -1,4 +1,4 @@
-package maksym.preparation.lists;
+package maksym.preparation.medium.lists;
 
 public class AddTwoNumbers {
 

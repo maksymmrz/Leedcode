@@ -1,4 +1,4 @@
-package maksym.preparation.arrays;
+package maksym.preparation.hard;
 
 public class MedianTwoSortedArrays {
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {

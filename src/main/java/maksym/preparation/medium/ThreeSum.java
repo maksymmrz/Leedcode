@@ -1,4 +1,4 @@
-package maksym.preparation.arrays;
+package maksym.preparation.medium;
 
 import java.util.ArrayList;
 import java.util.Arrays;
