@@ -1,5 +1,7 @@
 package maksym.preparation.medium;
 
+import maksym.preparation.util.Util;
+
 import java.util.*;
 
 public class CombinationSum {
@@ -27,11 +29,6 @@ public class CombinationSum {
         CombinationSum instance = new CombinationSum();
         int[] input1 = new int[]{4,2,8};
         List<List<Integer>> combinations = instance.combinationSum(input1, 8);
-        for (List<Integer> combination : combinations) {
-            for (Integer i : combination) {
-                System.out.print(i + " ");
-            }
-            System.out.println();
-        }
+        Util.show2dList(combinations);
     }
 }
