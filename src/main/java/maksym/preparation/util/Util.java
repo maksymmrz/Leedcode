@@ -11,4 +11,13 @@ public class Util {
             System.out.println();
         }
     }
+
+    public static void show2d(int[][] matrix) {
+        for (int[] arr : matrix) {
+            for (int i : arr) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+    }
 }
