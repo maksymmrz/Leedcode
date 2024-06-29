@@ -3,10 +3,10 @@ package maksym.preparation.util;
 import java.util.List;
 
 public class Util {
-    public static void show2dList(List<List<Integer>> lists) {
-        for (List<Integer> combination : lists) {
-            for (Integer i : combination) {
-                System.out.print(i + " ");
+    public static <T> void show2dList(List<List<T>> lists) {
+        for (List<T> combination : lists) {
+            for (T e : combination) {
+                System.out.print(e + " ");
             }
             System.out.println();
         }
