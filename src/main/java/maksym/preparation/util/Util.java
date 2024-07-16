@@ -21,4 +21,11 @@ public class Util {
         }
         System.out.println();
     }
+
+    public static void show(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
 }
