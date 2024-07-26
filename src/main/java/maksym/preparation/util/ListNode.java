@@ -1,6 +1,23 @@
 package maksym.preparation.util;
 
 public class ListNode {
+
+    public static ListNode create(int[] arr) {
+        ListNode list = null;
+        ListNode tail = null;
+
+        for (int i : arr) {
+            if (list == null) {
+                list = new ListNode(i);
+                tail = list;
+            } else {
+                tail.next = new ListNode(i);
+                tail = tail.next;
+            }
+        }
+        return list;
+    }
+
     public static ListNode create(int n) {
         ListNode list = null;
         ListNode tail = null;
