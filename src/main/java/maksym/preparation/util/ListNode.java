@@ -2,7 +2,7 @@ package maksym.preparation.util;
 
 public class ListNode {
 
-    public static ListNode create(int[] arr) {
+    public static ListNode createSeq(int[] arr) {
         ListNode list = null;
         ListNode tail = null;
 
@@ -18,7 +18,7 @@ public class ListNode {
         return list;
     }
 
-    public static ListNode create(int n) {
+    public static ListNode createSeq(int n) {
         ListNode list = null;
         ListNode tail = null;
 

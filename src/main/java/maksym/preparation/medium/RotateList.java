@@ -37,7 +37,7 @@ public class RotateList {
     public static void main(String[] args) {
         RotateList instance = new RotateList();
 
-        ListNode list = ListNode.create(4);
+        ListNode list = ListNode.createSeq(4);
         ListNode.show(list);
         ListNode.show(instance.rotateRight(list, 5));
     }

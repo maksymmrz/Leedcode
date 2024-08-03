@@ -30,7 +30,7 @@ public class RemoveDuplicatesFromSortedListII {
 
     public static void main(String[] args) {
         RemoveDuplicatesFromSortedListII instance = new RemoveDuplicatesFromSortedListII();
-        ListNode list = ListNode.create(new int[]{1, 2, 3, 3, 4, 4, 5});
+        ListNode list = ListNode.createSeq(new int[]{1, 2, 3, 3, 4, 4, 5});
         ListNode.show(list);
         ListNode.show(instance.deleteDuplicates(list));
     }
