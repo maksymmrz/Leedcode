@@ -54,7 +54,7 @@ public class TreeNode {
             if (layers[i] == null) layers[i] = "   ".repeat((int) Math.pow(2, i));
 
             int width = (int) Math.pow(2, i) * 6;
-            String val = tree == null ? "null" : String.valueOf(tree.val);
+            String val = tree == null ? "n" : String.valueOf(tree.val);
             layers[i] += String.format("%-" + width + "s", val);
             if (tree != null) {
                 traverse(tree.left, i - 1, layers);
