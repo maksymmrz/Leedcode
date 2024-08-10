@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.trees;
 
 public class UniqueBinarySearchTrees {
     public int numTrees(int n) {

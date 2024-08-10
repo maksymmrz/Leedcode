@@ -47,6 +47,7 @@ public class TreeNode {
         for (int i = layers.length - 1; i >= 0; i--) {
             System.out.println(layers[i]);
         }
+        System.out.println();
     }
 
     private static void traverse(TreeNode tree, int i, String[] layers) {

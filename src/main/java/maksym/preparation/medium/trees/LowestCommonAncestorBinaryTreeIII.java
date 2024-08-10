@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.trees;
 
 import maksym.preparation.util.TreeNode;
 
