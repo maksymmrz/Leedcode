@@ -1,19 +1,8 @@
 package maksym.preparation.hard;
 
+import maksym.preparation.util.ListNode;
+
 public class MergeKSortedLists {
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     private ListNode merge(ListNode first, ListNode second) {
         if (first == null) return second;

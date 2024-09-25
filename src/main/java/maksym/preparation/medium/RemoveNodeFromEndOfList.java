@@ -1,15 +1,8 @@
 package maksym.preparation.medium;
 
-public class RemoveNodeFromEndOfList {
-    public static class ListNode {
-        int val;
-        ListNode next;
+import maksym.preparation.util.ListNode;
 
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
+public class RemoveNodeFromEndOfList {
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
         if (head == null) {

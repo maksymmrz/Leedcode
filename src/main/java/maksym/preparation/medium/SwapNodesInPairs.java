@@ -1,16 +1,8 @@
 package maksym.preparation.medium;
 
+import maksym.preparation.util.ListNode;
+
 public class SwapNodesInPairs {
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     public ListNode swapPairs(ListNode head) {
         ListNode start = null;

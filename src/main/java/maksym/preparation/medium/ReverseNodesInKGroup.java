@@ -1,16 +1,9 @@
 package maksym.preparation.medium;
 
+import maksym.preparation.util.ListNode;
+
 
 public class ReverseNodesInKGroup {
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     public static ListNode ln(int val, ListNode node) {
         return new ListNode(val, node);
