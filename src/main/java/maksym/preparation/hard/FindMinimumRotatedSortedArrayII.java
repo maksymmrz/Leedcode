@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.hard;
 
 public class FindMinimumRotatedSortedArrayII {
     public int findMin(int[] nums) {
