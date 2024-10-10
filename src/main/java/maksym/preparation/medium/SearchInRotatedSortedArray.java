@@ -7,37 +7,25 @@ public class SearchInRotatedSortedArray {
         int r = nums.length - 1;
 
         while (l < r) {
-            int mid = (l + r + 1) / 2;
-
-            if (nums[mid] == target) return mid;
-
-            if (nums[l] <= nums[mid]) {
-                if (nums[l] <= target && target < nums[mid]) {
-                    r = mid - 1;
-                } else {
-                    l = mid;
-                }
+            int m = (l + r) / 2;
+            if (nums[m] == target) return m;
+            else if (nums[l] <= nums[m]) {
+                if (nums[l] <= target && target < nums[m]) r = m;
+                else l = m + 1;
             } else {
-                if (nums[mid] < target && target <= nums[r]) {
-                    l = mid;
-                } else {
-                    r = mid - 1;
-                }
+                if (nums[m] < target && target <= nums[r]) l = m + 1;
+                else r = m;
             }
         }
-
         return nums[l] == target ? l : -1;
     }
 
     public static void main(String[] args) {
-        int[] arr1 = new int[]{4, 5, 6, 7, 0, 1, 2};
-        int[] arr2 = new int[]{3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1, 2};
-        int[] arr3 = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
-        int[] arr4 = new int[]{5, 1, 3};
         SearchInRotatedSortedArray instance = new SearchInRotatedSortedArray();
-        System.out.println(instance.search(arr1, 1));
-        System.out.println(instance.search(arr2, 9));
-        System.out.println(instance.search(arr3, 12));
-        System.out.println(instance.search(arr4, 3));
+        System.out.println(instance.search(new int[]{4, 5, 6, 7, 0, 1, 2}, 1));
+        System.out.println(instance.search(new int[]{3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1, 2}, 9));
+        System.out.println(instance.search(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}, 12));
+        System.out.println(instance.search(new int[]{5, 1, 3}, 5));
+        System.out.println(instance.search(new int[]{3, 5, 1}, 3));
     }
 }
