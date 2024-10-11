@@ -5,22 +5,19 @@ public class Search2DMatrix {
     public boolean searchMatrix(int[][] matrix, int target) {
         final int m = matrix.length;
         final int n = matrix[0].length;
+        final int N = m * n;
 
-        int left = 0;
-        int right = m * n - 1;
+        int l = 0;
+        int r = N - 1;
 
-        while (left < right) {
-            int mid = (left + right + 1) / 2;
+        while (l < r) {
+            int mid = (l + r) / 2;
             int i = mid / n;
             int j = mid % n;
-
-            if (matrix[i][j] <= target) {
-                left = mid;
-            } else {
-                right = mid - 1;
-            }
+            if (matrix[i][j] < target) l = mid + 1;
+            else r = mid;
         }
-        return matrix[left / n][left % n] == target;
+        return matrix[l / n][l % n] == target;
     }
 
     public static void main(String[] args) {
