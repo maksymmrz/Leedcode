@@ -1,46 +1,44 @@
 package maksym.preparation.hard;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.stream.Stream;
 
 public class RussianDollEnvelopes {
     public int maxEnvelopes(int[][] envelopes) {
         Arrays.sort(envelopes, (a, b) -> {
-            if (a[0] == b[0]) return -(a[1] - b[1]);
+            if (a[0] == b[0]) return b[1] - a[1];
             else return a[0] - b[0];
         });
+        final int n = envelopes.length;
+        int[] seq = Stream.of(envelopes).mapToInt(pair -> pair[1]).toArray();
+        int[] sorted = new int[n];
+        int lim = 0;
 
-        final int N = envelopes.length;
-        int max = 0;
-        List<int[]> seq = new ArrayList<>();
-
-        for (int i = 0; i < N; i++) {
-            if (i == 0) {
-                seq.add(envelopes[i]);
+        for (int num : seq) {
+            if (lim == 0) {
+                sorted[0] = num;
+                lim++;
             } else {
-                int[] last = seq.get(seq.size() - 1);
-                if (last[0] < envelopes[i][0] && last[1] < envelopes[i][1]) {
-                    seq.add(envelopes[i]);
+                if (sorted[lim - 1] < num) {
+                    sorted[lim] = num;
+                    lim++;
                 } else {
-                    int j = bs(seq, envelopes[i]);
-                    seq.set(j, envelopes[i]);
+                    int j = bs(sorted, lim - 1, num);
+                    sorted[j] = num;
                 }
             }
-            max = Math.max(seq.size(), max);
         }
-        return max;
+        return lim;
     }
 
-    private int bs(List<int[]> seq, int[] target) {
-        int l = 0;
-        int r = seq.size() - 1;
-        while (l < r) {
-            int m = (l + r) / 2;
-            if (seq.get(m)[1] < target[1]) l = m + 1;
-            else r = m;
+    public int bs(int[] arr, int to, int target) {
+        int from = 0;
+        while (from < to) {
+            int m = (from + to) / 2;
+            if (arr[m] < target) from = m + 1;
+            else to = m;
         }
-        return l;
+        return from;
     }
 
     public static void main(String[] args) {
