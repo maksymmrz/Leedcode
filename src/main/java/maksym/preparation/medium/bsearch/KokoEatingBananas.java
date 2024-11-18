@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.bsearch;
 
 import java.util.stream.IntStream;
 
