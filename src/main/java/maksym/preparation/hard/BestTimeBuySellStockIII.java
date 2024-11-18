@@ -2,30 +2,31 @@ package maksym.preparation.hard;
 
 public class BestTimeBuySellStockIII {
     public int maxProfit(int[] prices) {
-        int[] left = new int[prices.length];
+        final int n = prices.length;
+        int[] left = new int[n];
+        int[] right = new int[n];
         int min = Integer.MAX_VALUE;
+        int prev = 0;
+
         for (int i = 0; i < prices.length; i++) {
-            if (prices[i] < min) {
-                min = prices[i];
-            }
-            int prev = i == 0 ? Integer.MIN_VALUE : left[i - 1];
             left[i] = Math.max(prices[i] - min, prev);
+            prev = left[i];
+            min = Math.min(prices[i], min);
         }
-        int[] right = new int[prices.length];
-        int max = Integer.MIN_VALUE;
-        for (int i = prices.length - 1; i >= 0; i--) {
-            if (max < prices[i]) {
-                max = prices[i];
-            }
-            int prev = i == prices.length - 1 ? Integer.MIN_VALUE : right[i + 1];
+
+        int max = 0;
+        prev = 0;
+        for (int i = n - 1; i >= 0; i--) {
             right[i] = Math.max(max - prices[i], prev);
+            prev = right[i];
+            max = Math.max(prices[i], max);
         }
+
         int sum = 0;
-        for (int i = 0; i < prices.length; i++) {
-            int two = left[i] + right[i];
-            int oneOrTwo = Math.max(two, left[i]);
-            sum = Math.max(oneOrTwo, sum);
+        for (int i = 0; i < n; i++) {
+            sum = Math.max(left[i] + right[i], sum);
         }
+
         return sum;
     }
 
