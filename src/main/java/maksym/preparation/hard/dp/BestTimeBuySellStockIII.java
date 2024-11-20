@@ -1,4 +1,4 @@
-package maksym.preparation.hard;
+package maksym.preparation.hard.dp;
 
 public class BestTimeBuySellStockIII {
     public int maxProfit(int[] prices) {
