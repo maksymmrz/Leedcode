@@ -2,25 +2,37 @@ package maksym.preparation.medium.trees;
 
 import maksym.preparation.util.TreeNode;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class LowestCommonAncestorBinaryTreeIII {
 
     public TreeNode lowestCommonAncestor(TreeNode p, TreeNode q) {
-        return lowestCommonAncestorRec(p, q, new HashSet<>());
+        int ph = lenToTop(p);
+        int qh = lenToTop(q);
+        int diff = Math.abs(ph - qh);
+
+        if (ph < qh) {
+            TreeNode tmp = p;
+            p = q;
+            q = tmp;
+        }
+
+        for (int i = 0; i < diff; i++) {
+            p = p.parent;
+        }
+
+        while (p != q) {
+            p = p.parent;
+            q = q.parent;
+        }
+        return p;
     }
 
-    public TreeNode lowestCommonAncestorRec(TreeNode a, TreeNode b, Set<TreeNode> used) {
-        if (a != null && !used.add(a)) {
-            return a;
+    public int lenToTop(TreeNode node) {
+        int l = 0;
+        while (node != null) {
+            l++;
+            node = node.parent;
         }
-        if (b != null && !used.add(b)) {
-            return b;
-        }
-        if (a != null) a = a.parent;
-        if (b != null) b = b.parent;
-        return lowestCommonAncestorRec(a, b, used);
+        return l;
     }
 
     public static void main(String[] args) {
