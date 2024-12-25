@@ -8,21 +8,24 @@ import static maksym.preparation.util.TreeNode.create;
 
 public class BinaryTreeMaximumPathSum {
     public int maxPathSum(TreeNode root) {
-        if (root == null) return 0;
-        AtomicInteger result = new AtomicInteger(Integer.MIN_VALUE);
-        maxPath(root, result);
-        return result.get();
+        AtomicInteger maxPath = new AtomicInteger(Integer.MIN_VALUE);
+        maxPath(root, maxPath);
+        return maxPath.get();
     }
 
-    public int maxPath(TreeNode tree, AtomicInteger max) {
-        if (tree == null) return 0;
+    public int maxPath(TreeNode root, AtomicInteger maxPath) {
+        if (root == null) return 0;
         else {
-            int left = maxPath(tree.left, max);
-            int right = maxPath(tree.right, max);
-            int maxBranch = Math.max(left, right);
-            int circle = Math.max(tree.val, tree.val + left + right);
-            max.set(Math.max(tree.val + maxBranch, Math.max(circle, max.get())));
-            return tree.val + Math.max(0, maxBranch);
+            int left = maxPath(root.left, maxPath);
+            int right = maxPath(root.right, maxPath);
+
+            int branchSum = Math.max(Math.max(left, right), 0) + root.val;
+
+            int circle = left + root.val + right;
+            int sum = Math.max(branchSum, circle);
+            maxPath.set(Math.max(sum, maxPath.get()));
+
+            return branchSum;
         }
     }
 
