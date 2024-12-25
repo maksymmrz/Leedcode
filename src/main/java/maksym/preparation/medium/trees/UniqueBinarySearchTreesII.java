@@ -4,66 +4,45 @@ import maksym.preparation.util.TreeNode;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 public class UniqueBinarySearchTreesII {
     public List<TreeNode> generateTrees(int n) {
-        return gen(n, new HashMap<>())
-                .stream()
-                .map(tree -> markedCopy(tree, new AtomicInteger()))
-                .collect(Collectors.toList());
-    }
+        Map<Integer, List<TreeNode>> cache = new HashMap<>();
+        cache.put(0, Collections.singletonList(null));
+        cache.put(1, List.of(TreeNode.create(1)));
 
-    public List<TreeNode> gen(int n, Map<Integer, List<TreeNode>> cache) {
-        if (n == 0) return Collections.emptyList();
-        if (cache.containsKey(n)) {
-            return cache.get(n);
-        } else if (n == 1) {
-            return Collections.singletonList(new TreeNode(1));
-        } else {
-            List<TreeNode> combinations = new ArrayList<>();
+        for (int nn = 2; nn <= n; nn++) {
+            List<TreeNode> trees = new ArrayList<>();
 
-            for (int k = 0; k < n; k++) {
-                int leftN = n - 1 - k;
-                int rightN = k;
-                List<TreeNode> combinationsL = gen(leftN, cache);
-                List<TreeNode> combinationsR = gen(rightN, cache);
+            for (int k = 0; k < nn; k++) {
+                List<TreeNode> leftCombinations = cache.get(nn - k - 1);
+                List<TreeNode> rightCombinations = cache.get(k);
 
-                if (combinationsL.isEmpty()) {
-                    for (TreeNode right : combinationsR) {
-                        combinations.add(new TreeNode(1, null, right));
-                    }
-                }
-                if (combinationsR.isEmpty()) {
-                    for (TreeNode left : combinationsL) {
-                        combinations.add(new TreeNode(1, left, null));
-                    }
-                }
-                for (TreeNode right : combinationsR) {
-                    for (TreeNode left : combinationsL) {
-                        combinations.add(new TreeNode(1, left, right));
+                for (TreeNode leftCombination : leftCombinations) {
+                    for (TreeNode rightCombination : rightCombinations) {
+                        TreeNode node = TreeNode.create(1, leftCombination, rightCombination);
+                        trees.add(copyMarked(node, new AtomicInteger(0)));
                     }
                 }
             }
-            cache.put(n, combinations);
-            return combinations;
+            cache.put(nn, trees);
         }
-
+        return cache.get(n);
     }
 
-    public TreeNode markedCopy(TreeNode tree, AtomicInteger num) {
+    private TreeNode copyMarked(TreeNode tree, AtomicInteger index) {
         if (tree == null) return null;
         else {
-            TreeNode left = markedCopy(tree.left, num);
-            TreeNode node = new TreeNode(num.incrementAndGet(), left, null);
-            node.right = markedCopy(tree.right, num);
-            return node;
+            TreeNode left = copyMarked(tree.left, index);
+            TreeNode copy = TreeNode.create(index.incrementAndGet(), left, null);
+            copy.right = copyMarked(tree.right, index);
+            return copy;
         }
     }
 
     public static void main(String[] args) {
         UniqueBinarySearchTreesII instance = new UniqueBinarySearchTreesII();
-        for (TreeNode tree : instance.generateTrees(4)) {
+        for (TreeNode tree : instance.generateTrees(3)) {
             TreeNode.show(tree);
             System.out.println();
         }
