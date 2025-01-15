@@ -6,55 +6,38 @@ public class SetMatrixZeroes {
     public void setZeroes(int[][] matrix) {
         final int m = matrix.length;
         final int n = matrix[0].length;
-        int marker = findMarker(matrix);
+
+        boolean isCol = false;
+        boolean isRow = false;
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (matrix[i][j] == 0) {
-                    setCross(matrix, marker, i, j);
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+
+                    if (i == 0) isRow = true;
+                    if (j == 0) isCol = true;
                 }
             }
         }
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == marker) {
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) {
                     matrix[i][j] = 0;
                 }
             }
         }
-    }
-
-    public void setCross(int[][] matrix, int marker, int x, int y) {
-        final int m = matrix.length;
-        final int n = matrix[0].length;
-
-        for (int i = 0; i < m; i++) {
-            if (matrix[i][y] != 0) {
-                matrix[i][y] = marker;
-            }
-        }
-        for (int j = 0; j < n; j++) {
-            if (matrix[x][j] != 0) {
-                matrix[x][j] = marker;
-            }
-        }
-    }
-
-    public int findMarker(int[][] matrix) {
-        final int m = matrix.length;
-        final int n = matrix[0].length;
-        int marker = 1;
-
-        for (int i = 0; i < m; i++) {
+        if (isRow) {
             for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == marker) {
-                    marker--;
-                    i = -1;
-                    j = n;
-                }
+                matrix[0][j] = 0;
             }
         }
-        return marker;
+        if (isCol) {
+            for (int i = 0; i < m; i++) {
+                matrix[i][0] = 0;
+            }
+        }
     }
 
     public static void main(String[] args) {
