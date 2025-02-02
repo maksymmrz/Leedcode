@@ -1,4 +1,4 @@
-package maksym.preparation;
+package maksym.preparation.medium;
 
 public class PeakIndexInMountainArray {
     public int peakIndexInMountainArray(int[] arr) {
