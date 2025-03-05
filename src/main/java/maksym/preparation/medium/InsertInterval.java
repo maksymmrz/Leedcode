@@ -2,38 +2,40 @@ package maksym.preparation.medium;
 
 import maksym.preparation.util.Util;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class InsertInterval {
 
     public int[][] insert(int[][] intervals, int[] newInterval) {
-        if (intervals.length == 0) return new int[][]{newInterval};
+        final int n = intervals.length;
 
-        List<int[]> result = new LinkedList<>();
+        List<int[]> acc = new ArrayList<>();
+        int i = 0;
 
-        int idx = 0;
-        while (idx < intervals.length && intervals[idx][1] < newInterval[0]) {
-            result.add(intervals[idx]);
-            idx++;
+        while (i < n && intervals[i][1] < newInterval[0]) {
+            acc.add(intervals[i]);
+            i++;
         }
 
-        int[] axillary = Arrays.copyOf(newInterval, newInterval.length);
-
-        while (idx < intervals.length && intervals[idx][0] <= axillary[1]) {
-            axillary[0] = Math.min(intervals[idx][0], axillary[0]);
-            axillary[1] = Math.max(intervals[idx][1], axillary[1]);
-            idx++;
+        while (i < n && intervals[i][0] <= newInterval[1]) {
+            newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
+            newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
+            i++;
         }
-        result.add(axillary);
+        acc.add(newInterval);
 
-        while (idx < intervals.length) {
-            result.add(intervals[idx]);
-            idx++;
+        while (i < n) {
+            acc.add(intervals[i]);
+            i++;
         }
 
-        return result.toArray(new int[result.size()][]);
+        int[][] res = new int[acc.size()][];
+
+        for (int j = 0; j < acc.size(); j++) {
+            res[j] = acc.get(j);
+        }
+
+        return res;
     }
 
     public static void main(String[] args) {
