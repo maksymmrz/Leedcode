@@ -1,4 +1,4 @@
-package maksym.preparation.medium.twopointers;
+package maksym.preparation.medium.swindow;
 
 public class ShortestSubarrayRemoveToMakeSorted {
     public int findLengthOfShortestSubarray(int[] arr) {
