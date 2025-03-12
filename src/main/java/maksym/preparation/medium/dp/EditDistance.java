@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.dp;
 
 public class EditDistance {
     public int minDistance(String word1, String word2) {

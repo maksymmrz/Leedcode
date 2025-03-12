@@ -1,4 +1,4 @@
-package maksym.preparation.medium.trees;
+package maksym.preparation.medium.tree;
 
 public class PopulatingNextRightPointersInEachNode {
     public static class ModNode {

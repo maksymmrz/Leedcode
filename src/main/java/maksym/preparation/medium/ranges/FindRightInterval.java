@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.ranges;
 
 import maksym.preparation.util.Util;
 
