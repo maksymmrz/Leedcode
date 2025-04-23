@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.dp;
 
 public class UniquePaths {
     public int uniquePaths(int m, int n) {

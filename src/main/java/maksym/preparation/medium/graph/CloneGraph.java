@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.graph;
 
 import maksym.preparation.util.Node;
 

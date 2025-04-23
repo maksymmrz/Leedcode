@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.dp;
 
 public class UniquePathsII {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {

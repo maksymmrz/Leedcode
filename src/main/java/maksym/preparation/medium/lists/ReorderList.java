@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.lists;
 
 import maksym.preparation.util.ListNode;
 

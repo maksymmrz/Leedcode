@@ -1,10 +1,10 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.lists;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CopyListRandomPointer {
-    protected static class Node {
+    private static class Node {
         int val;
         Node next;
         Node random;
@@ -16,7 +16,7 @@ public class CopyListRandomPointer {
         }
     }
 
-    public Node copyRandomList(Node head) {
+    private Node copyRandomList(Node head) {
         Map<Node, Node> copies = new HashMap<>();
         Node copyH = new Node(0);
         Node curr = copyH;

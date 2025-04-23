@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.bsearch;
 
 public class FindPeakElement {
     public int findPeakElement(int[] nums) {

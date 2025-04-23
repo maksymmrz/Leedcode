@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.uf;
 
 public class EqualityEquations {
     public boolean equationsPossible(String[] equations) {
