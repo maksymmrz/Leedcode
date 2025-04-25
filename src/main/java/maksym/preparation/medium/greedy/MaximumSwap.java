@@ -12,37 +12,37 @@ public class MaximumSwap {
             num /= 10;
         }
 
-        int[][] dp = new int[2][n + 1];
-        Arrays.fill(dp[0], 0);
+        int[] positions = new int[11];
+        Arrays.fill(positions, -1);
 
-        for (int j =  n - 1; j >= 0; j--) {
-            if (s[j] <= dp[0][j + 1]) {
-                dp[0][j] = dp[0][j + 1];
-                dp[1][j] = dp[1][j + 1];
-            } else {
-                dp[0][j] = s[j];
-                dp[1][j] = j;
-            }
+        for (int i = 0; i < s.length; i++) {
+            int digit = s[i];
+            positions[digit] = i;
         }
 
-        for (int i = 0; i < n; i++) {
-            if (s[i] < dp[0][i + 1]) {
-                int j = dp[1][i + 1];
-                int tmp = s[i];
+        for (int i = 0; i < s.length; i++) {
+            int digit = s[i];
 
-                s[i] = dp[0][i + 1];
-                s[j] = tmp;
-                break;
+            for (int j = 9; j > digit; j--) {
+                int pos = positions[j];
+
+                if (pos > 0 && pos > i) {
+                    int tmp = s[i];
+                    s[i] = s[pos];
+                    s[pos] = tmp;
+
+                    i = s.length;
+                    break;
+                }
             }
         }
 
         int res = 0;
 
-        for (int i = 0; i < n; i++) {
+        for (int i : s) {
             res *= 10;
-            res += s[i];
+            res += i;
         }
-
         return res;
     }
 
