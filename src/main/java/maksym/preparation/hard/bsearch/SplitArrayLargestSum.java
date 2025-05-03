@@ -1,4 +1,4 @@
-package maksym.preparation.hard;
+package maksym.preparation.hard.bsearch;
 
 public class SplitArrayLargestSum {
     public int splitArray(int[] nums, int k) {

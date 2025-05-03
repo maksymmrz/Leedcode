@@ -1,4 +1,4 @@
-package maksym.preparation.hard;
+package maksym.preparation.hard.dfsbfs;
 
 import java.util.ArrayList;
 import java.util.HashSet;

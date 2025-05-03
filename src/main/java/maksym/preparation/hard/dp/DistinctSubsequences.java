@@ -1,4 +1,4 @@
-package maksym.preparation.hard;
+package maksym.preparation.hard.dp;
 
 public class DistinctSubsequences {
     public int numDistinct(String s, String t) {

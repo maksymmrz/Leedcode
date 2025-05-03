@@ -1,4 +1,4 @@
-package maksym.preparation.hard;
+package maksym.preparation.hard.dp;
 
 public class StepsToMakeStringPalindrome {
     public int minInsertions(String s) {
