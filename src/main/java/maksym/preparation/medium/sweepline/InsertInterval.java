@@ -1,4 +1,4 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.sweepline;
 
 import maksym.preparation.util.Util;
 
