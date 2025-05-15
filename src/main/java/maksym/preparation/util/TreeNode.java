@@ -17,6 +17,12 @@ public class TreeNode {
         this.val = val;
     }
 
+    public String toString() {
+        var l = left != null ? String.valueOf(left.val) : "null";
+        var r = right != null ? String.valueOf(right.val) : "null";
+        return String.format("[%1$s -> (%2$s, %3$s)]", val, l, r);
+    }
+
     public static TreeNode create(int val, TreeNode left, TreeNode right) {
         return new TreeNode(val, left, right);
     }
