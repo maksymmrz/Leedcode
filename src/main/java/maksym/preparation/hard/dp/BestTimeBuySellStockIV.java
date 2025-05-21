@@ -1,24 +1,30 @@
 package maksym.preparation.hard.dp;
 
+import java.util.Arrays;
+
 public class BestTimeBuySellStockIV {
     public int maxProfit(int k, int[] prices) {
-        final int n = prices.length;
+        final int N = prices.length;
 
-        int profit = 0;
+        int[][] closed = new int[k + 1][N + 1];
+        int[][] open = new int[k + 1][N + 1];
 
-        int[][] b = new int[k + 1][n + 1];
-        int[][] s = new int[k + 1][n + 1];
+        Arrays.fill(open[0], Integer.MIN_VALUE);
+
 
         for (int kk = 1; kk <= k; kk++) {
-            b[kk][0] = Integer.MIN_VALUE;
+            open[kk][0] = Integer.MIN_VALUE;
 
-            for (int i = 1; i <= n; i++) {
-                s[kk][i] = Math.max(prices[i - 1] + b[kk][i - 1], s[kk][i - 1]);
-                b[kk][i] = Math.max(-prices[i - 1] + s[kk - 1][i - 1], b[kk][i - 1]);
+            for (int i = 1; i <= N; i++) {
+                int p = prices[i - 1];
+
+                open[kk][i] = Math.max(-p + closed[kk - 1][i - 1], open[kk][i - 1]);
+
+                closed[kk][i] = Math.max(p + open[kk][i - 1], closed[kk][i - 1]);
             }
-            profit = Math.max(s[kk][n], profit);
         }
-        return profit;
+
+        return closed[k][N];
     }
 
     public static void main(String[] args) {
