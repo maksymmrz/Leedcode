@@ -4,35 +4,41 @@ import java.util.*;
 
 public class FindAnagramsInString {
     public List<Integer> findAnagrams(String s, String p) {
-        int[] freq = new int[26];
-        for (int i = 0; i < p.length(); i++) freq[toInt(p, i)]++;
-
-        List<Integer> anagrams = new ArrayList<>();
         int[] count = new int[26];
-        int l = 0;
-        int r = 0;
-
-        while (r < s.length()) {
-            int rightCh = toInt(s, r);
-            count[rightCh]++;
-
-            if (r - l + 1 == p.length()) {
-                if (Arrays.compare(count, freq) == 0) {
-                    anagrams.add(l);
-                }
-
-                int leftCh = toInt(s, l);
-                count[leftCh]--;
-
-                l++;
-            }
-            r++;
+        for (char ch : p.toCharArray()) {
+            count[toInt(ch)]--;
         }
-        return anagrams;
+        List<Integer> res = new ArrayList<>();
+
+        int i = 0;
+
+        for (int j = 0; j < s.length(); j++) {
+            count[toInt(s.charAt(j))]++;
+
+            if (j - i == p.length()) {
+                count[toInt(s.charAt(i))]--;
+                i++;
+            }
+
+            if (j - i + 1 == p.length() && isAllZero(count)) {
+                res.add(i);
+            }
+        }
+
+        return res;
     }
 
-    private int toInt(String s, int i) {
-        return s.charAt(i) - 'a';
+    private boolean isAllZero(int[] arr) {
+        for (int i : arr) {
+            if (i != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private int toInt(char ch) {
+        return ch - 'a';
     }
 
     public static void main(String[] args) {
