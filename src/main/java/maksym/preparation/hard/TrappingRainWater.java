@@ -3,32 +3,43 @@ package maksym.preparation.hard;
 public class TrappingRainWater {
 
     public int trap(int[] height) {
-        if (height.length < 3) {
-            return 0;
-        }
-        int l = 0;
-        int r = height.length - 1;
-        int lmax = 0;
-        int rmax = 0;
+        final int N = height.length;
+
         int sum = 0;
 
-        while (l < r) {
-            lmax = Math.max(height[l], lmax);
-            rmax = Math.max(height[r], rmax);
+        int l = 0;
+        int r = N - 1;
 
-            if (height[l] < height[r]) {
-                sum += Math.min(lmax, rmax) - height[l];
+        int lMax = 0;
+        int rMax = 0;
+
+        while (l <= r) {
+            int left = height[l];
+            int right = height[r];
+
+            lMax = Math.max(left, lMax);
+            rMax = Math.max(right, rMax);
+
+            int low = Math.min(lMax, rMax);
+
+            if (left < right) {
+                if (left < low) {
+                    sum += low - left;
+                }
                 l++;
             } else {
-                sum += Math.min(lmax, rmax) - height[r];
+                if (right < low) {
+                    sum += low - right;
+                }
                 r--;
             }
         }
+
         return sum;
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[] {0,1,0,2,1,0,1,3,2,1,2,1};
+        int[] arr = new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
         TrappingRainWater instance = new TrappingRainWater();
         System.out.println(instance.trap(arr));
     }
