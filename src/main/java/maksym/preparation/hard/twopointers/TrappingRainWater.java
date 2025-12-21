@@ -1,36 +1,42 @@
-package maksym.preparation.hard;
+package maksym.preparation.hard.twopointers;
 
 public class TrappingRainWater {
 
     public int trap(int[] height) {
         final int N = height.length;
 
-        int sum = 0;
+        if (N < 3) {
+            return 0;
+        }
 
         int l = 0;
         int r = N - 1;
 
-        int lMax = 0;
-        int rMax = 0;
+        int leftMax = 0;
+        int rightMax = 0;
+
+        int sum = 0;
 
         while (l <= r) {
             int left = height[l];
             int right = height[r];
 
-            lMax = Math.max(left, lMax);
-            rMax = Math.max(right, rMax);
+            leftMax = Math.max(left, leftMax);
+            rightMax = Math.max(right, rightMax);
 
-            int low = Math.min(lMax, rMax);
+            int h = Math.min(leftMax, rightMax);
 
             if (left < right) {
-                if (left < low) {
-                    sum += low - left;
+                if (left < h) {
+                    sum += h - left;
                 }
+
                 l++;
             } else {
-                if (right < low) {
-                    sum += low - right;
+                if (right < h) {
+                    sum += h - right;
                 }
+
                 r--;
             }
         }
