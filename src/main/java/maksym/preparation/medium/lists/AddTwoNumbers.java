@@ -5,50 +5,44 @@ import maksym.preparation.util.ListNode;
 public class AddTwoNumbers {
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode head = null;
-        ListNode tail = null;
-        int nextOne = 0;
-        ListNode first = l1;
-        ListNode second = l2;
+        var resultList = new ListNode(0);
+        var currentNode = resultList;
+        var remained = 0;
 
-        while (first != null || second != null) {
-            int sum;
-            if (first != null && second != null) {
-                sum = first.val + second.val;
-                first = first.next;
-                second = second.next;
-            } else if (first != null) {
-                sum = first.val;
-                first = first.next;
-            } else {
-                sum = second.val;
-                second = second.next;
+        while (l1 != null || l2 != null) {
+            int firstDigit = 0;
+
+            if (l1 != null) {
+                firstDigit = l1.val;
+                l1 = l1.next;
             }
 
-            int value = (sum + nextOne) % 10;
-            ListNode next = new ListNode(value);
-            nextOne = (sum + nextOne) / 10;
+            int secondDigit = 0;
 
-            if (tail == null) {
-                head = next;
-            } else {
-                tail.next = next;
+            if (l2 != null) {
+                secondDigit = l2.val;
+                l2 = l2.next;
             }
-            tail = next;
+            var added = firstDigit + secondDigit + remained;
+
+            currentNode.next = new ListNode(added % 10);
+
+            remained = added / 10;
+            currentNode = currentNode.next;
         }
-        if (nextOne != 0) {
-            tail.next = new ListNode(nextOne);
+
+        if (remained != 0) {
+            currentNode.next = new ListNode(remained);
         }
-        return head;
+
+        return resultList.next;
     }
 
     public static void main(String[] args) {
-        ListNode first = new ListNode(9, new ListNode(9, new ListNode(9)));
-        ListNode second = new ListNode(0, new ListNode(0, new ListNode(1)));
-        ListNode sum = new AddTwoNumbers().addTwoNumbers(first, second);
-        while (sum != null) {
-            System.out.print(sum.val);
-            sum = sum.next;
-        }
+        var first = new ListNode(9, new ListNode(9, new ListNode(9)));
+        var second = new ListNode(0, new ListNode(0, new ListNode(1)));
+        var sum = new AddTwoNumbers().addTwoNumbers(first, second);
+
+        ListNode.show(sum);
     }
 }
