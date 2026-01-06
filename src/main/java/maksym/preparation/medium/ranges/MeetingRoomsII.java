@@ -1,32 +1,30 @@
 package maksym.preparation.medium.ranges;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class MeetingRoomsII {
     public int minMeetingRooms(int[][] intervals) {
-        final int n = intervals.length;
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        var pq = new PriorityQueue<Integer>();
 
-        int[] starts = new int[n];
-        int[] ends = new int[n];
+        var maxRooms = 0;
 
-        for (int i = 0; i < n; i++) {
-            starts[i] = intervals[i][0];
-            ends[i] = intervals[i][1];
+        for (int[] interval : intervals) {
+            int start = interval[0];
+            int end = interval[1];
+
+            while (!pq.isEmpty() && pq.peek() <= start) {
+                pq.poll();
+            }
+
+            pq.add(end);
+
+            maxRooms = Math.max(pq.size(), maxRooms);
         }
 
-        Arrays.sort(starts);
-        Arrays.sort(ends);
-
-        int j = 0;
-        int rooms = 0;
-
-        for (int i = 0; i < n; i++) {
-            while (ends[j] <= starts[i]) j++;
-
-            rooms = Math.max(i - j + 1, rooms);
-        }
-
-        return rooms;
+        return maxRooms;
     }
 
     public static void main(String[] args) {
