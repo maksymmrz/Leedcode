@@ -1,30 +1,36 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.array;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.HashSet;
 
 public class LongestConsecutiveSequence {
     public int longestConsecutive(int[] nums) {
-        int max = 0;
-        Set<Integer> set = IntStream.of(nums).boxed().collect(Collectors.toSet());
+        var set = new HashSet<Integer>();
+        for (int num : nums) {
+            set.add(num);
+        }
+
+        var max = 0;
 
         for (int num : nums) {
-            int len = 1;
-            int left = num - 1;
+            var size = 1;
+
+            var left = num - 1;
+
             while (set.remove(left)) {
-                len++;
                 left--;
+                size++;
             }
 
-            int right = num + 1;
+            var right = num + 1;
+
             while (set.remove(right)) {
-                len++;
                 right++;
+                size++;
             }
 
-            max = Math.max(len, max);
+            max = Math.max(size, max);
         }
+
         return max;
     }
 
