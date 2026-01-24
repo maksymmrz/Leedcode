@@ -1,22 +1,29 @@
-package maksym.preparation.medium;
+package maksym.preparation.medium.bsearch;
 
 public class SearchInRotatedSortedArray {
 
     public int search(int[] nums, int target) {
-        int l = 0;
-        int r = nums.length - 1;
+        var l = 0;
+        var r = nums.length - 1;
 
         while (l < r) {
-            int m = (l + r) / 2;
-            if (nums[m] == target) return m;
-            else if (nums[l] <= nums[m]) {
-                if (nums[l] <= target && target < nums[m]) r = m;
-                else l = m + 1;
+            var m = l + (r - l) / 2;
+
+            if (nums[l] <= nums[m]) {
+                if (nums[m] < target || target < nums[l]) {
+                    l = m + 1;
+                } else {
+                    r = m;
+                }
             } else {
-                if (nums[m] < target && target <= nums[r]) l = m + 1;
-                else r = m;
+                if (nums[m] < target && target <= nums[r]) {
+                    l = m + 1;
+                } else {
+                    r = m;
+                }
             }
         }
+
         return nums[l] == target ? l : -1;
     }
 
