@@ -1,4 +1,4 @@
-package maksym.preparation.hard.mqueue;
+package maksym.preparation.hard.swindow;
 
 public class KEmptySlots {
     public int kEmptySlots(int[] bulbs, int k) {
