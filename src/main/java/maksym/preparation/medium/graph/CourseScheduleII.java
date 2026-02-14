@@ -1,4 +1,4 @@
-package maksym.preparation.medium.bfs;
+package maksym.preparation.medium.graph;
 
 import maksym.preparation.util.Util;
 
