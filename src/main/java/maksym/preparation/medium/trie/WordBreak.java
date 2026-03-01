@@ -1,49 +1,53 @@
 package maksym.preparation.medium.trie;
 
-import java.util.List;
+import java.util.*;
 
 public class WordBreak {
     public boolean wordBreak(String s, List<String> wordDict) {
-        final int n = s.length();
+        final var N = s.length();
+        var trie = new Trie();
 
-        Trie trie = new Trie();
-        wordDict.forEach(trie::add);
+        for (String w : wordDict) {
+            trie.addWord(w);
+        }
 
-        boolean[] valid = new boolean[n + 1];
+        boolean[] valid = new boolean[s.length() + 1];
         valid[0] = true;
 
-        for (int i = 0; i < n; i++) {
-            Trie curr = trie;
+        for (int i = 0; i < N; i++) {
             if (valid[i]) {
-                for (int j = i; j < n; j++) {
-                    int ch = s.charAt(j) - 'a';
-                    curr = curr.next[ch];
+                var pos = trie;
 
-                    if (curr == null) break;
-                    if (curr.hasEnd) valid[j + 1] = true;
+                for (int j = i; j < N; j++) {
+                    char curr = s.charAt(j);
+                    var next = pos.refs.get(curr);
+                    if (next == null) break;
+
+                    if (next.isEnd) {
+                        valid[j + 1] = true;
+                    }
+                    pos = next;
                 }
             }
         }
-        return valid[n];
+
+        return valid[N];
     }
 
     private static class Trie {
-        private final Trie[] next = new Trie[26];
-        private boolean hasEnd = false;
+        public Map<Character, Trie> refs = new HashMap<>();
+        public boolean isEnd = false;
 
-        public void add(String s) {
-            Trie curr = this;
+        public void addWord(String s) {
+            addWord(s, 0);
+        }
 
-            for (int i = 0; i < s.length(); i++) {
-                int ch = s.charAt(i) - 'a';
-
-                if (curr.next[ch] == null) {
-                    curr.next[ch] = new Trie();
-                }
-
-                curr = curr.next[ch];
+        private void addWord(String s, int i) {
+            if (i == s.length()) {
+                isEnd = true;
+            } else {
+                refs.computeIfAbsent(s.charAt(i), k -> new Trie()).addWord(s, i + 1);
             }
-            curr.hasEnd = true;
         }
     }
 
